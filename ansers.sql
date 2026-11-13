@@ -1,0 +1,43 @@
+-- ============================================================
+-- Week 8: MySQL Database Backup and Restore - answer.sql
+-- ============================================================
+
+-- ------------------------------------------------------------
+-- Question 1: Creating a Complete Database Backup
+-- ------------------------------------------------------------
+-- Command to run in your system terminal (CMD), NOT in Workbench:
+-- mysqldump -u root -p sales > sales_backup.sql
+
+-- Explanation:
+-- mysqldump = MySQL tool that exports a database as SQL statements
+-- -u root = log in as MySQL user 'root'
+-- -p = prompt for the database password
+-- sales = the database to back up
+-- > sales_backup.sql = save the output into a file named sales_backup.sql
+-- The file contains CREATE TABLE + INSERT statements, so the whole
+-- database can be rebuilt from it.
+--
+-- Why regular backups are important:
+-- 1. Protects against accidental deletion, failed updates, or corruption
+-- 2. Allows recovery after hardware failure, crash, or attack
+-- 3. Lets you restore / migrate the database to another server
+-- 4. Gives you a safe point to return to before major changes
+
+-- ------------------------------------------------------------
+-- Question 2: Backing Up All Databases
+-- ------------------------------------------------------------
+-- Command to run in your system terminal (CMD):
+-- mysqldump -u root -p --all-databases > all_databases_backup.sql
+
+-- Explanation:
+-- --all-databases = back up EVERY database on the MySQL server,
+--   including sales and all other databases, plus users/permissions
+-- -u root = log in as user 'root'
+-- -p = prompt for password
+-- > all_databases_backup.sql = save everything into all_databases_backup.sql
+--
+-- Why backing up all databases is important before migrating:
+-- 1. Migration moves the whole server, not just one database
+-- 2. If migration fails, you can restore everything on the old server
+-- 3. It preserves users, permissions, and system settings
+-- 4. It ensures no data is lost during the move to another server
